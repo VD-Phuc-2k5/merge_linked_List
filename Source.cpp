@@ -128,27 +128,27 @@ void swap(int &a, int &b)
 	b = temp;
 }
 void sort(List l, char type)
+{
+	bool sorted = false, compare;
+	if(isEmpty(l)) return;
+	while (!sorted)
 	{
-		bool sorted = false, compare;
-		if(isEmpty(l)) return;
-		while (!sorted)
+		sorted = true;
+		Node* current = l.head;
+		while (current->next)
 		{
-			sorted = true;
-			Node* current = l.head;
-			while (current->next)
-			{
-				if (type == 'a')
-					compare = current->data > current->next->data;
-				else if (type == 'd')
-					compare = current->data < current->next->data;
-				else return;
+			if (type == 'a')
+				compare = current->data > current->next->data;
+			else if (type == 'd')
+				compare = current->data < current->next->data;
+			else return;
 
-				if (compare)
-				{
-					sorted = false;
-					swap(current->data, current->next->data);
-				}
-				current = current->next;
+			if (compare)
+			{
+				sorted = false;
+				swap(current->data, current->next->data);
 			}
+			current = current->next;
 		}
 	}
+}
